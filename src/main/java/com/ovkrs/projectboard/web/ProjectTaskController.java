@@ -20,6 +20,8 @@ public class ProjectTaskController {
    @Autowired
    private ProjectTaskService projectTaskService;
 
+
+   // save and update the projectTask. if u want to update the task u can use task id and updates it values
    @PostMapping("")
    public ResponseEntity<?> addPTToBoard(@Valid  @RequestBody ProjectTask projectTask, BindingResult result){
 
@@ -51,6 +53,12 @@ public class ProjectTaskController {
        ProjectTask projectTask = projectTaskService.getById(pt_id);
        return new ResponseEntity<ProjectTask>(projectTask, HttpStatus.OK); // return the complete project entity
 
+   }
+
+   @DeleteMapping("/{pt_id}")
+    public ResponseEntity<?> deletePT(@PathVariable Long pt_id){
+       projectTaskService.deleteProjectTask(pt_id);
+       return new ResponseEntity<String>("Project Task Deleted",HttpStatus.OK);
    }
 
 }

@@ -11,6 +11,7 @@ public class ProjectTaskService {
     @Autowired
     private ProjectTaskRepository projectTaskRepository;
 
+    //we can save and update the project task using this function
     public ProjectTask saveOrUpdateProjectTask(ProjectTask projectTask){
 
         if(projectTask.getStatus()== null || projectTask.getStatus()== ""){
@@ -21,6 +22,7 @@ public class ProjectTaskService {
 
     }
 
+
     public Iterable<ProjectTask> getAll(){
 
         return projectTaskRepository.findAll();
@@ -29,10 +31,16 @@ public class ProjectTaskService {
 
     public ProjectTask getById(Long id){
 
-      //  return projectTaskRepository.findById(id);  this is not work because of findById is optional so
+        //  return projectTaskRepository.findById(id);  this is not work because of findById is optional so
         //  we create abstract method in ProjectTaskRepository
         return projectTaskRepository.getProjectTaskById(id);
     }
 
+
+    // delete project Task
+    public void deleteProjectTask(Long id){
+        ProjectTask projectTask = getById(id);
+        projectTaskRepository.delete(projectTask);
+    }
 
 }

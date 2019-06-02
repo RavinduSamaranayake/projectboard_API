@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProjectTaskRepository extends CrudRepository<ProjectTask , Long> {
 
-    ProjectTask getProjectTaskById(Long id);
+    ProjectTask getProjectTaskById(Long id); // this is my optional abstract method
 }
