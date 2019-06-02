@@ -13,8 +13,9 @@ public class ProjectTask {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "summary cannot be blanck ") //validation the summary field
+    @NotBlank(message = "summary cannot be blank ") //validation the summary field
     private String summary;
+    @NotBlank(message = "accept criteria cannot be blank ") //validation the accept criteria field
     private String acceptCriteria;
     private String status;
 

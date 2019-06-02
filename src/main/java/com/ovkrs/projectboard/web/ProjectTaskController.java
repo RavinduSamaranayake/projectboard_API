@@ -31,11 +31,26 @@ public class ProjectTaskController {
 
                // map the error messages and error fields
                errormap.put(error.getField(), error.getDefaultMessage());
-               return new ResponseEntity<Map<String , String>>(errormap, HttpStatus.BAD_REQUEST);
+
            }
+           return new ResponseEntity<Map<String , String>>(errormap, HttpStatus.BAD_REQUEST);
 
        }
        ProjectTask newPT = projectTaskService.saveOrUpdateProjectTask(projectTask); // save the request projectTask in db
-       return new ResponseEntity<ProjectTask>(newPT, HttpStatus.CREATED);
+       return new ResponseEntity<ProjectTask>(newPT, HttpStatus.CREATED); // return the complete project entity
+
    }
+
+   @GetMapping("/all")
+    public Iterable<ProjectTask> getAllPTs(){
+       return projectTaskService.getAll();
+   }
+
+   @GetMapping("/{pt_id}")
+    public ResponseEntity<?> getPTById(@PathVariable Long pt_id){
+       ProjectTask projectTask = projectTaskService.getById(pt_id);
+       return new ResponseEntity<ProjectTask>(projectTask, HttpStatus.OK); // return the complete project entity
+
+   }
+
 }
